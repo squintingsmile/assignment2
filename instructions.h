@@ -5,16 +5,14 @@
 #ifndef ASSIGNMENT2_INSTRUCTIONS_H
 #define ASSIGNMENT2_INSTRUCTIONS_H
 
+// This program counter indicates which line the program is going to excecute next
 extern int programCounter;
 
-union fourbytes{
-    unsigned int uNum;
-    char* str;
-    int num;
-};
+// Since a pointer is 8 bytes long and int is 4 bytes long, long type (8 bytes) is
+// suitable for storing all possible inputs
+extern long registers[34];
 
-extern union fourbytes registers[34];
-
+// The followings are instructions
 void add(int rd, int rs, int rt, int sa);
 
 void addu(int rd, int rs, int rt, int sa);

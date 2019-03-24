@@ -73,11 +73,8 @@ int bin(char* str) {
 }
 
 void parser(char* line) {
-    printf("%p",(void*) registers[9].str);
-    printf("line %d \n",programCounter);
     if (strncmp("000000", line, 6) == 0) {
         //Rtype
-        printf("RType \n");
         char* function = (char*) malloc(6 * sizeof(char));
         char* rs = (char*) malloc(5 * sizeof(char));
         char* rd = (char*) malloc(5 * sizeof(char));
@@ -97,7 +94,6 @@ void parser(char* line) {
 
     } else if (strncmp("00001", line, 5) == 0) {
         //JType
-        printf("JType \n");
         char* opcode = (char*) malloc(6 * sizeof(char));
         char* target = (char*) malloc(26 * sizeof(char));
         strncpy(opcode, line, 6);
@@ -110,7 +106,6 @@ void parser(char* line) {
         }
     } else {
         //IType
-        printf("IType \n");
         char* opcode = (char*) malloc(6 * sizeof(char));
         char* rs = (char*) malloc(5 * sizeof(char));
         char* rt = (char*) malloc(5 * sizeof(char));
@@ -119,7 +114,6 @@ void parser(char* line) {
         strncpy(rs, &line[6], 5);
         strncpy(rt, &line[11], 5);
         strncpy(immediate, &line[16], 16);
-        printf("rs : %s \nrt : %s \nimmediate : %s\n", rs, rt, immediate);
         for (int i = 0; i < 20; i++) {
             if (strncmp(Itype[i].opcode, opcode, 6) == 0) {
                 Itype[i].funcPtr(bin(rs), bin(rt), bin(immediate));
